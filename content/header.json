@@ -1,20 +1,24 @@
 {
   "marketing_stripe": {
-    "text": "Aproveite nossos descontos de até 50%!",
-    "link": "/promotion"
+    "text": "Frete grátis em pedidos acima de R$ 299",
+    "link": "/search"
   },
   "contacts_stripe": {
     "pages": [
       {
-        "title": "Sobre nós",
+        "title": "Sobre",
         "link": "/pages/sobre-nos"
       },
       {
-        "title": "Esta loja é um PWA",
-        "link": "/posts/esta-loja-e-um-pwa"
+        "title": "Entrega",
+        "link": "/pages/entrega"
+      },
+      {
+        "title": "Contato",
+        "link": "/pages/contato"
       }
     ],
-    "phone_wpp": true,
+    "phone_wpp": false,
     "socials": true
   },
   "categories_list": {

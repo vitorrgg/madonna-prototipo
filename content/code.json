@@ -1,5 +1,5 @@
 {
   "css": "",
-  "html_head": "",
+  "html_head": "<meta name=\"robots\" content=\"noindex, nofollow\">",
   "html_body": ""
 }

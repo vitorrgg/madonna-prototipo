@@ -1,8 +1,4 @@
+# Protótipo de teste — não deve ser indexado.
+# Restaurar um robots.txt normal se este projeto virar site real.
 User-agent: *
-Allow: /
-Disallow: /app/
-Disallow: /search$
-Disallow: /search?
-Disallow: /search.html$
-Disallow: /search.html?
-Disallow: /admin/
+Disallow: /

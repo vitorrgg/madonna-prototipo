@@ -1,28 +1,10 @@
 {
-  "meta_title": "",
-  "meta_description": "",
+  "meta_title": "Warner Music Brasil — Loja Oficial",
+  "meta_description": "Vinis, CDs, box sets e merch oficial dos artistas da Warner Music Brasil.",
   "sections": [
     {
-      "type": "banner-slider",
-      "autoplay": 9000,
-      "full_width": false,
-      "slides": [
-        {
-          "img": "/img/uploads/rect89.webp",
-          "link": "/headset",
-          "alt": "Headset banner",
-          "start": "2020-04-11T05:54:06.750Z",
-          "end": "2020-12-31T03:00:00.000Z",
-          "mobile_img": "/img/uploads/headphone.webp"
-        },
-        {
-          "start": "",
-          "end": "",
-          "img": "/img/uploads/banner2.webp",
-          "alt": "Banner sample two",
-          "mobile_img": "/img/uploads/passion.webp"
-        }
-      ]
+      "type": "custom-html",
+      "html": "<section class=\"wmg-hero\"><div class=\"wmg-hero__grid\"><div class=\"wmg-hero__aside\"><p class=\"wmg-label\">vinis · cds · box sets<br>camisetas e colecionáveis<br>enviamos para todo o brasil</p><div class=\"wmg-hero__socials\"><a href=\"https://instagram.com/warnermusicbr\" aria-label=\"Instagram\"><i class=\"i-instagram\"></i></a><a href=\"https://www.youtube.com/WarnerBrasil\" aria-label=\"YouTube\"><i class=\"i-youtube\"></i></a><a href=\"https://www.facebook.com/WarnerMusicBrasil\" aria-label=\"Facebook\"><i class=\"i-facebook\"></i></a></div></div><h1 class=\"wmg-display\">Warner<br>Music<br>Brasil</h1></div><div class=\"wmg-hero__bottom\"><p class=\"wmg-hero__lead\">A loja oficial do selo no Brasil. Prensagens em vinil, edições de CD, box sets de catálogo e a linha de vestuário dos artistas — direto da gravadora, sem intermediário.</p><div class=\"wmg-hero__ghost wmg-ghost\">LO<br>JA.</div></div></section>"
     },
     {
       "type": "info-bar",
@@ -30,18 +12,45 @@
     },
     {
       "type": "collection-shelf",
+      "shuffle": false,
+      "collection_id": null,
+      "sort": "news",
+      "title": "Lançamentos",
+      "link": "/search",
+      "headless": false,
+      "limit": 12,
+      "page": 1
+    },
+    {
+      "type": "custom-html",
+      "html": "<section class=\"wmg-roster\"><div class=\"wmg-roster__head\"><h2 class=\"wmg-display\">Se<br>los.</h2><a class=\"wmg-roster__more\" href=\"/search\">mais <span class=\"wmg-slash\">+/</span></a></div><div class=\"wmg-roster__grid\"><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Atlantic</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Elektra</span></a><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Parlophone</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Warner Records</span></a><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">nacional</span><span class=\"wmg-roster__name\">Continental</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">nacional</span><span class=\"wmg-roster__name\">Chantecler</span></a></div></section>"
+    },
+    {
+      "type": "collection-shelf",
+      "shuffle": false,
+      "collection_id": null,
+      "sort": "sales",
+      "title": "Mais vendidos",
+      "link": "/search",
+      "headless": false,
+      "limit": 12,
+      "page": 1
+    },
+    {
+      "type": "collection-shelf",
       "shuffle": true,
       "collection_id": null,
       "sort": "offers",
-      "title": "",
+      "title": "Ofertas",
+      "link": "/search",
       "headless": false,
       "limit": 12,
       "page": 1
     },
     {
       "type": "page-title",
-      "title": "Loja demo da E-Com Plus",
-      "description": "Loja de demonstração e testes da plataforma E-Com Plus e Storefront. Todos os produtos, preços e informações são meramente ilustrativos."
+      "title": "Protótipo de teste",
+      "description": "Site de demonstração construído sobre o E-Com Plus Storefront, com identidade visual baseada em warnermusic.com.br. Produtos, preços e informações são do catálogo de testes da plataforma e não representam a gravadora."
     }
   ]
 }

@@ -1,1 +1,739 @@
-// Add your custom CSS here.
+// =========================================================================
+// Warner Music Brasil — tema da loja (teste)
+//
+// Referência de identidade: https://www.warnermusic.com.br/
+//   · fundo quase-branco (#fafbfe), tipografia preta, sem cor de apoio
+//   · display gigante em caixa alta, entrelinha comprimida, quebrado em
+//     linhas curtas, com ponto final e barras como tique gráfico
+//   · marca d'água cinza-clara atrás/ao lado dos títulos de seção
+//   · azul (#2d9aff) como único acento, em pílulas
+//   · fotografia full-bleed em grid apertado
+//
+// Tipografia: a fonte da marca é a Suisse Intl (licenciada). Aqui usamos
+// Inter (content/settings.json → font_family) como substituta neo-grotesca.
+// Para trocar, basta apontar font_family para a família licenciada.
+// =========================================================================
+
+// -------------------------------------------------------------------------
+// Base
+// -------------------------------------------------------------------------
+
+body {
+  background: var(--wmg-bg);
+  color: var(--wmg-ink-soft);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--wmg-ink);
+  color: #fff;
+}
+
+// As vitrines rodam full-bleed com 4rem de respiro; os blocos que usam
+// .container do Bootstrap precisam do mesmo recuo para o grid fechar.
+.custom-html > .container,
+.page-title.container {
+  max-width: none;
+  padding-left: var(--spacer-2);
+  padding-right: var(--spacer-2);
+
+  @media (min-width: 768px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  @media (min-width: 992px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+// -------------------------------------------------------------------------
+// Utilitários tipográficos da marca
+// -------------------------------------------------------------------------
+
+// Display: o gesto central da identidade.
+%wmg-display-metrics {
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: var(--wmg-display-leading);
+  letter-spacing: var(--wmg-display-tracking);
+  margin: 0;
+}
+
+.wmg-display {
+  @extend %wmg-display-metrics;
+  color: var(--wmg-ink);
+  // Nos corpos grandes a referência é visivelmente mais leve que o texto.
+  font-weight: 300;
+  font-size: clamp(2.75rem, 9vw, 7.5rem);
+}
+
+// Marca d'água: o mesmo desenho do display, em cinza, atrás do conteúdo.
+.wmg-ghost {
+  @extend %wmg-display-metrics;
+  color: var(--wmg-ghost);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 11vw, 9rem);
+  user-select: none;
+  pointer-events: none;
+}
+
+// Micro-label: caixa alta, corpo pequeno, tracking aberto.
+.wmg-label {
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: var(--wmg-label-tracking);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+// Tique gráfico "+/" e "/>" que a referência usa colado nos títulos.
+.wmg-slash {
+  color: var(--wmg-accent);
+  letter-spacing: 0;
+}
+
+// -------------------------------------------------------------------------
+// Top bar + header
+// -------------------------------------------------------------------------
+
+.top-bar {
+  background: var(--wmg-bg);
+  border-bottom: 1px solid var(--wmg-line);
+
+  &__nav {
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    text-transform: uppercase;
+    padding: 0;
+
+    a {
+      color: var(--wmg-ink);
+
+      &:hover {
+        color: var(--wmg-accent);
+      }
+    }
+  }
+
+  // O template dá `background: var(--primary)` ao countdown quando é link
+  // (seletor `a.top-bar__countdown`) — precisa da mesma especificidade.
+  &__countdown,
+  a#{&}__countdown {
+    background: var(--wmg-ink);
+    color: #fff;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    text-align: center;
+    display: block;
+
+    &:hover {
+      color: #fff;
+      opacity: 0.8;
+    }
+  }
+}
+
+.header {
+  background: var(--wmg-bg);
+  border-bottom: 1px solid var(--wmg-line);
+  box-shadow: none;
+
+  &__logo {
+    max-height: 46px;
+    width: auto;
+  }
+
+  // Nav principal: micro-label, sublinhado só no hover.
+  &__nav {
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    background: transparent;
+
+    a {
+      color: var(--wmg-ink);
+      border-bottom: 1px solid transparent;
+
+      &:hover {
+        background: transparent;
+        color: var(--wmg-ink);
+        border-bottom-color: var(--wmg-ink);
+      }
+    }
+  }
+}
+
+// Busca como pílula preta — o elemento de UI mais característico da
+// referência (lá são os campos do "Fale conosco").
+#search-input,
+.search__input {
+  background: var(--wmg-ink);
+  border: none;
+  border-radius: var(--wmg-radius-pill);
+  color: #fff;
+  padding-left: 1.25rem;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+  }
+
+  &:focus {
+    background: var(--wmg-ink);
+    color: #fff;
+    box-shadow: 0 0 0 2px rgba(45, 154, 255, 0.5);
+  }
+}
+
+// -------------------------------------------------------------------------
+// Menu de categorias
+// -------------------------------------------------------------------------
+
+.menu {
+  &__nav,
+  &__link {
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+  }
+
+  a {
+    color: var(--wmg-ink);
+
+    &:hover {
+      color: var(--wmg-accent);
+    }
+  }
+}
+
+// -------------------------------------------------------------------------
+// Info bar (frete / parcelamento / troca)
+// -------------------------------------------------------------------------
+
+.info-bar {
+  background: transparent;
+  border-top: 1px solid var(--wmg-line);
+  border-bottom: 1px solid var(--wmg-line);
+  color: var(--wmg-ink);
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: var(--wmg-label-tracking);
+
+  i,
+  svg {
+    color: var(--wmg-ink);
+  }
+}
+
+// -------------------------------------------------------------------------
+// Hero (custom-html na home)
+// -------------------------------------------------------------------------
+
+.wmg-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: end;
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+
+  // Bloco de apoio à esquerda, alinhado à direita como na referência.
+  &__aside {
+    color: var(--wmg-muted);
+
+    @media (min-width: 768px) {
+      text-align: right;
+      padding-bottom: 0.75rem;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+    }
+
+    a {
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--wmg-line);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wmg-muted);
+
+      &:hover {
+        border-color: var(--wmg-ink);
+        color: var(--wmg-ink);
+      }
+    }
+  }
+
+  // Texto de apoio à esquerda e marca d'água à direita, na mesma faixa —
+  // é o arranjo do bloco "So bre." da referência.
+  &__bottom {
+    display: grid;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: end;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+
+  &__lead {
+    max-width: 42rem;
+    margin: 0 0 0 auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+
+    @media (min-width: 768px) {
+      text-align: right;
+    }
+  }
+
+  &__ghost {
+    text-align: right;
+    // Encosta a última linha na base do parágrafo.
+    margin-bottom: -0.16em;
+  }
+}
+
+// -------------------------------------------------------------------------
+// Bloco de artistas / selos (custom-html na home)
+// -------------------------------------------------------------------------
+
+.wmg-roster {
+  position: relative;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+
+  &__head {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+  }
+
+  &__more {
+    color: var(--wmg-ink);
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--wmg-accent);
+    }
+  }
+
+  // Grid apertado, na proporção quadrada da referência.
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--wmg-ink);
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    overflow: hidden;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--wmg-accent);
+      color: #fff;
+    }
+
+    // Alterna tiles claros para quebrar o bloco preto sólido.
+    &--light {
+      background: #fff;
+      color: var(--wmg-ink);
+      outline: 1px solid var(--wmg-line);
+      outline-offset: -1px;
+
+      &:hover {
+        background: var(--wmg-ink);
+        color: #fff;
+      }
+    }
+  }
+
+  &__name {
+    @extend %wmg-display-metrics;
+    font-size: clamp(1.125rem, 3.2vw, 2rem);
+  }
+
+  &__meta {
+    position: absolute;
+    top: clamp(0.75rem, 2vw, 1.5rem);
+    left: clamp(0.75rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+    font-size: 0.625rem;
+    letter-spacing: var(--wmg-label-tracking);
+    opacity: 0.6;
+  }
+}
+
+// -------------------------------------------------------------------------
+// Vitrines de produto
+// -------------------------------------------------------------------------
+
+.products-carousel {
+  max-width: none;
+
+  // Remove o filete central do template — aqui o título é display,
+  // alinhado à esquerda, com ponto final colado.
+  //
+  // O EJS deixa quebras de linha em volta do título dentro do <a>. Em
+  // contexto flex os nós só-de-espaço são descartados e a whitespace nas
+  // bordas da linha some, então o ponto (::after do h4) encosta no texto
+  // sem precisar de margem negativa.
+  &__title {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0 0 clamp(1rem, 2.5vw, 1.75rem);
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      @extend %wmg-display-metrics;
+      content: ".";
+      font-weight: 300;
+      font-size: clamp(1.75rem, 5.5vw, 4rem);
+      color: var(--wmg-ink);
+    }
+
+    a,
+    span {
+      @extend %wmg-display-metrics;
+      min-width: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--wmg-ink);
+      font-weight: 300;
+      font-size: clamp(1.75rem, 5.5vw, 4rem);
+    }
+
+    a:hover {
+      color: var(--wmg-accent);
+    }
+  }
+
+  // Gutter apertado, como o grid de artistas da referência.
+  .products-carousel__item {
+    padding: 2px;
+  }
+
+  .glide__arrow {
+    border: 1px solid var(--wmg-line);
+    border-radius: 50%;
+    color: var(--wmg-ink);
+    background: var(--wmg-bg);
+
+    &:hover {
+      border-color: var(--wmg-ink);
+      background: var(--wmg-ink);
+      color: #fff;
+    }
+  }
+}
+
+// -------------------------------------------------------------------------
+// Card de produto
+// -------------------------------------------------------------------------
+
+.product-card {
+  padding: 0;
+  background: transparent;
+  border: none;
+
+  // Foto full-bleed e quadrada, sem respiro interno.
+  &__pictures {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    outline: 1px solid var(--wmg-line);
+    outline-offset: -1px;
+
+    @media (min-width: 576px) {
+      height: auto;
+    }
+    @media (min-width: 992px) {
+      height: auto;
+    }
+  }
+
+  &__picture {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+
+      @media (min-width: 576px) {
+        max-height: none;
+      }
+      @media (min-width: 992px) {
+        max-height: none;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover &__picture img {
+      transform: scale(1.04);
+    }
+  }
+
+  &__name {
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    line-height: 1.6;
+    color: var(--wmg-ink);
+    padding-top: 0.75rem;
+  }
+
+  &__prices {
+    padding-bottom: 0.5rem;
+  }
+
+  &__offer-stamp {
+    background: var(--wmg-accent);
+    color: #fff;
+    border-radius: var(--wmg-radius-pill);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 1;
+    right: 0.5rem;
+  }
+}
+
+// Preços: valor em preto forte, referência riscada em cinza.
+.price,
+.product-card__price,
+.sale-price {
+  color: var(--wmg-ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.price--old,
+.base-price,
+del {
+  color: var(--wmg-muted);
+  font-weight: 400;
+}
+
+// -------------------------------------------------------------------------
+// Botões
+// -------------------------------------------------------------------------
+
+.btn {
+  border-radius: var(--wmg-radius-pill);
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: var(--wmg-label-tracking);
+  padding: 0.7rem 1.5rem;
+  border-width: 1px;
+}
+
+.btn-primary {
+  background: var(--wmg-accent);
+  border-color: var(--wmg-accent);
+  color: #fff;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: var(--wmg-ink);
+    border-color: var(--wmg-ink);
+    color: #fff;
+  }
+}
+
+.btn-secondary,
+.btn-dark {
+  background: var(--wmg-ink);
+  border-color: var(--wmg-ink);
+  color: #fff;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: var(--wmg-accent);
+    border-color: var(--wmg-accent);
+    color: #fff;
+  }
+}
+
+.btn-outline-primary {
+  border-color: var(--wmg-ink);
+  color: var(--wmg-ink);
+
+  &:hover {
+    background: var(--wmg-ink);
+    border-color: var(--wmg-ink);
+    color: #fff;
+  }
+}
+
+// As setas do carrossel herdam .btn — não devem virar pílula larga.
+.glide__arrow.btn {
+  padding: 0;
+}
+
+// -------------------------------------------------------------------------
+// Título de página / breadcrumbs / conteúdo
+// -------------------------------------------------------------------------
+
+.page-title {
+  &__head {
+    color: var(--wmg-ink);
+
+    h1 {
+      @extend %wmg-display-metrics;
+      font-size: clamp(1.75rem, 5.5vw, 4rem);
+      color: var(--wmg-ink);
+    }
+  }
+
+  &__short-description {
+    max-width: 44rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--wmg-muted);
+  }
+}
+
+.breadcrumb {
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  letter-spacing: var(--wmg-label-tracking);
+
+  a {
+    color: var(--wmg-muted);
+
+    &:hover {
+      color: var(--wmg-ink);
+    }
+  }
+}
+
+.html-clearfix {
+  background: transparent;
+}
+
+// -------------------------------------------------------------------------
+// Rodapé
+// -------------------------------------------------------------------------
+
+.footer {
+  background: var(--wmg-bg);
+  border-top: 1px solid var(--wmg-line);
+  color: var(--wmg-ink-soft);
+  padding-top: clamp(2rem, 5vw, 4rem);
+
+  &__title {
+    color: var(--wmg-ink);
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 400;
+  }
+
+  a {
+    color: var(--wmg-ink-soft);
+    font-size: 0.8125rem;
+
+    &:hover {
+      color: var(--wmg-accent);
+    }
+  }
+
+  &__payment-methods i {
+    filter: grayscale(100%);
+    opacity: 0.7;
+  }
+}
+
+// Selos de confiança vêm coloridos e brigam com a paleta preto/branco.
+.stamps img,
+.footer .stamps img {
+  filter: grayscale(100%);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+// -------------------------------------------------------------------------
+// Neutralização de cores utilitárias
+//
+// A identidade não tem verde nem azul-claro. `success` e `info` viram preto
+// e cinza; `danger`/`warning` seguem vermelhos, que é sinalização de erro.
+// -------------------------------------------------------------------------
+
+.text-success {
+  color: var(--wmg-ink) !important;
+  font-weight: 700;
+}
+
+.alert-info,
+.alert-success {
+  background: #fff;
+  border-color: var(--wmg-line);
+  color: var(--wmg-ink);
+  border-radius: 0;
+
+  i,
+  svg {
+    color: var(--wmg-ink);
+  }
+}
+
+.app__credits,
+.footer__credits {
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  letter-spacing: var(--wmg-label-tracking);
+  color: var(--wmg-muted);
+}

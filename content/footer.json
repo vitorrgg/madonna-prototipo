@@ -1,20 +1,20 @@
 {
   "description": {
-    "title": "",
-    "text": ""
+    "title": "Warner Music Brasil",
+    "text": "Loja oficial do selo no Brasil. Vinis, CDs, box sets e vestuário dos artistas nacionais e internacionais do catálogo."
   },
   "links_1": {
     "list_pages": true,
-    "title": "Páginas",
+    "title": "Institucional",
     "list": []
   },
   "links_2": {
     "list_categories": true,
-    "title": "Categorias",
+    "title": "Catálogo",
     "list": []
   },
   "contacts": {
-    "title": "Contatos",
+    "title": "Fale conosco",
     "phone_wpp": true,
     "socials": true,
     "email": true,
@@ -23,7 +23,7 @@
   "stamps": [
     {
       "src": "/img/uploads/ssl-safe.png",
-      "alt": "Secure connection",
+      "alt": "Conexão segura",
       "width": 150,
       "height": 62
     }
@@ -37,5 +37,5 @@
     "hipercard": true,
     "boleto": true
   },
-  "credits": ""
+  "credits": "Protótipo de teste — identidade baseada em warnermusic.com.br"
 }

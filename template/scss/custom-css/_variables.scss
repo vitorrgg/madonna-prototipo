@@ -1,0 +1,34 @@
+// Warner Music Brasil — tokens de marca
+// Extraídos de warnermusic.com.br (fundo quase-branco, tipografia preta
+// gigante, marca d'água cinza atrás dos títulos e azul como único acento).
+
+$wmg-bg: #fafbfe; // fundo geral
+$wmg-ink: #000000; // display, títulos, pílulas
+$wmg-ink-soft: #212529; // corpo de texto
+$wmg-ghost: #efefef; // marca d'água dos títulos
+$wmg-line: #e7e7e7; // divisores
+$wmg-muted: #6c757d; // texto secundário
+$wmg-accent: #2d9aff; // azul do CTA ("Enviar")
+
+// Métrica do display: caixa alta, entrelinha comprimida, tracking negativo.
+$wmg-display-tracking: -0.045em;
+$wmg-display-leading: 0.86;
+// Micro-labels: caixa alta, corpo pequeno, tracking aberto.
+$wmg-label-tracking: 0.14em;
+
+$wmg-radius-pill: 100px;
+
+:root {
+  --wmg-bg: #{$wmg-bg};
+  --wmg-ink: #{$wmg-ink};
+  --wmg-ink-soft: #{$wmg-ink-soft};
+  --wmg-ghost: #{$wmg-ghost};
+  --wmg-line: #{$wmg-line};
+  --wmg-muted: #{$wmg-muted};
+  --wmg-accent: #{$wmg-accent};
+
+  --wmg-display-tracking: #{$wmg-display-tracking};
+  --wmg-display-leading: #{$wmg-display-leading};
+  --wmg-label-tracking: #{$wmg-label-tracking};
+  --wmg-radius-pill: #{$wmg-radius-pill};
+}
