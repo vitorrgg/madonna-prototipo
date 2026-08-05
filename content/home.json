@@ -17,34 +17,12 @@
     {
       "type": "collection-shelf",
       "shuffle": false,
-      "collection_id": null,
-      "sort": "news",
-      "title": "Lançamentos",
-      "link": "/search",
-      "headless": false,
-      "limit": 12,
-      "page": 1
-    },
-    {
-      "type": "collection-shelf",
-      "shuffle": false,
-      "collection_id": null,
+      "collection_id": "6a73784c568e8331251d712a:categories:MADONNA:/madonna",
       "sort": "sales",
-      "title": "Mais vendidos",
-      "link": "/search",
+      "title": "Madonna",
+      "link": "/madonna",
       "headless": false,
-      "limit": 12,
-      "page": 1
-    },
-    {
-      "type": "collection-shelf",
-      "shuffle": true,
-      "collection_id": null,
-      "sort": "offers",
-      "title": "Ofertas",
-      "link": "/search",
-      "headless": false,
-      "limit": 12,
+      "limit": 24,
       "page": 1
     },
     {
