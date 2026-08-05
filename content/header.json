@@ -1,17 +1,17 @@
 {
   "marketing_stripe": {
-    "text": "Frete grátis em pedidos acima de R$ 299",
+    "text": "Envio para todo o Brasil",
     "link": "/search"
   },
   "contacts_stripe": {
     "pages": [
       {
-        "title": "Sobre",
-        "link": "/pages/sobre-nos"
+        "title": "Store",
+        "link": "/search"
       },
       {
-        "title": "Entrega",
-        "link": "/pages/entrega"
+        "title": "News",
+        "link": "/blog"
       },
       {
         "title": "Contato",

@@ -1,5 +1,5 @@
 {
   "css": "",
-  "html_head": "<meta name=\"robots\" content=\"noindex, nofollow\">",
+  "html_head": "<meta name=\"robots\" content=\"noindex, nofollow\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap\">",
   "html_body": ""
 }

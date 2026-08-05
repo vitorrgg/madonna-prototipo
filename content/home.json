@@ -1,14 +1,18 @@
 {
-  "meta_title": "Warner Music Brasil — Loja Oficial",
-  "meta_description": "Vinis, CDs, box sets e merch oficial dos artistas da Warner Music Brasil.",
+  "meta_title": "Madonna — Loja (protótipo)",
+  "meta_description": "Protótipo de loja: catálogo, vinis, CDs e merch. Site de demonstração, não oficial.",
   "sections": [
     {
       "type": "custom-html",
-      "html": "<section class=\"wmg-hero\"><div class=\"wmg-hero__grid\"><div class=\"wmg-hero__aside\"><p class=\"wmg-label\">vinis · cds · box sets<br>camisetas e colecionáveis<br>enviamos para todo o brasil</p><div class=\"wmg-hero__socials\"><a href=\"https://instagram.com/warnermusicbr\" aria-label=\"Instagram\"><i class=\"i-instagram\"></i></a><a href=\"https://www.youtube.com/WarnerBrasil\" aria-label=\"YouTube\"><i class=\"i-youtube\"></i></a><a href=\"https://www.facebook.com/WarnerMusicBrasil\" aria-label=\"Facebook\"><i class=\"i-facebook\"></i></a></div></div><h1 class=\"wmg-display\">Warner<br>Music<br>Brasil</h1></div><div class=\"wmg-hero__bottom\"><p class=\"wmg-hero__lead\">A loja oficial do selo no Brasil. Prensagens em vinil, edições de CD, box sets de catálogo e a linha de vestuário dos artistas — direto da gravadora, sem intermediário.</p><div class=\"wmg-hero__ghost wmg-ghost\">LO<br>JA.</div></div></section>"
+      "html": "<section class=\"md-hero\"><div class=\"md-panel\"><nav class=\"md-panel__nav\"><a href=\"/search\">Store</a><a href=\"/blog\">News</a><a href=\"/search\">Music</a><a href=\"/pages/contato\">Contato</a></nav></div><div class=\"md-hero__stage\"><h1 class=\"md-hero__title\">Cat&aacute;logo<br><em>completo</em></h1></div></section>"
     },
     {
       "type": "info-bar",
       "enabled": true
+    },
+    {
+      "type": "custom-html",
+      "html": "<section class=\"md-index\"><div class=\"md-index__grid\"><nav class=\"md-index__list\"><a href=\"/vinil\">Vinil</a><a href=\"/cd\">CD</a><a href=\"/dvd\">DVD</a><a href=\"/blu-ray\">Blu-ray</a><a href=\"/catalogo\">Cat&aacute;logo</a><a href=\"/pre-venda\">Pr&eacute;-venda</a><a href=\"/lancamentos\">Lan&ccedil;amentos</a><a href=\"/ofertas\">Ofertas</a><a href=\"/acessorios\">Acess&oacute;rios</a><a href=\"/em-breve\">Em breve</a></nav><div class=\"md-index__tiles\"><a class=\"md-index__tile\" href=\"/vinil\"><span class=\"md-index__tile-name\">Vinil</span></a><a class=\"md-index__tile\" href=\"/cd\"><span class=\"md-index__tile-name\">CD</span></a><a class=\"md-index__tile\" href=\"/dvd\"><span class=\"md-index__tile-name\">DVD</span></a><a class=\"md-index__tile\" href=\"/blu-ray\"><span class=\"md-index__tile-name\">Blu-ray</span></a><a class=\"md-index__tile\" href=\"/catalogo\"><span class=\"md-index__tile-name\">Cat&aacute;logo</span></a><a class=\"md-index__tile\" href=\"/pre-venda\"><span class=\"md-index__tile-name\">Pr&eacute;-venda</span></a><a class=\"md-index__tile\" href=\"/lancamentos\"><span class=\"md-index__tile-name\">Lan&ccedil;amentos</span></a><a class=\"md-index__tile\" href=\"/ofertas\"><span class=\"md-index__tile-name\">Ofertas</span></a><a class=\"md-index__tile\" href=\"/acessorios\"><span class=\"md-index__tile-name\">Acess&oacute;rios</span></a><a class=\"md-index__tile\" href=\"/em-breve\"><span class=\"md-index__tile-name\">Em breve</span></a></div></div></section>"
     },
     {
       "type": "collection-shelf",
@@ -20,10 +24,6 @@
       "headless": false,
       "limit": 12,
       "page": 1
-    },
-    {
-      "type": "custom-html",
-      "html": "<section class=\"wmg-roster\"><div class=\"wmg-roster__head\"><h2 class=\"wmg-display\">Se<br>los.</h2><a class=\"wmg-roster__more\" href=\"/search\">mais <span class=\"wmg-slash\">+/</span></a></div><div class=\"wmg-roster__grid\"><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Atlantic</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Elektra</span></a><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Parlophone</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">internacional</span><span class=\"wmg-roster__name\">Warner Records</span></a><a class=\"wmg-roster__tile\" href=\"/search\"><span class=\"wmg-roster__meta\">nacional</span><span class=\"wmg-roster__name\">Continental</span></a><a class=\"wmg-roster__tile wmg-roster__tile--light\" href=\"/search\"><span class=\"wmg-roster__meta\">nacional</span><span class=\"wmg-roster__name\">Chantecler</span></a></div></section>"
     },
     {
       "type": "collection-shelf",
@@ -50,7 +50,7 @@
     {
       "type": "page-title",
       "title": "Protótipo de teste",
-      "description": "Site de demonstração construído sobre o E-Com Plus Storefront, com identidade visual baseada em warnermusic.com.br. Produtos, preços e informações são do catálogo de testes da plataforma e não representam a gravadora."
+      "description": "Site de demonstração construído sobre o E-Com Plus Storefront, com identidade visual derivada de madonna.com. Não é um site oficial da artista. Logotipo e navegação são comps; os produtos vêm do catálogo de testes da plataforma."
     }
   ]
 }

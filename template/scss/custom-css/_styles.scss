@@ -1,17 +1,20 @@
 // =========================================================================
-// Warner Music Brasil — tema da loja (teste)
+// Madonna — loja oficial (protótipo)
 //
-// Referência de identidade: https://www.warnermusic.com.br/
-//   · fundo quase-branco (#fafbfe), tipografia preta, sem cor de apoio
-//   · display gigante em caixa alta, entrelinha comprimida, quebrado em
-//     linhas curtas, com ponto final e barras como tique gráfico
-//   · marca d'água cinza-clara atrás/ao lado dos títulos de seção
-//   · azul (#2d9aff) como único acento, em pílulas
-//   · fotografia full-bleed em grid apertado
+// Referência: https://www.madonna.com/pages/music
+//   · painel magenta (#ff3bf1) com tipografia vermelha (#ff0000) em cima —
+//     um contraste que vibra de propósito, usado como assinatura
+//   · página preta, texto branco, blocos retangulares colados
+//   · grid de capas sem gutter, quadrado, edge-to-edge
+//   · coluna lateral de títulos em caps pequenas e pesadas
 //
-// Tipografia: a fonte da marca é a Suisse Intl (licenciada). Aqui usamos
-// Inter (content/settings.json → font_family) como substituta neo-grotesca.
-// Para trocar, basta apontar font_family para a família licenciada.
+// Nota de acessibilidade: vermelho sobre magenta tem contraste ~1.2:1. Na
+// referência isso é efeito gráfico, não leitura. Aqui o par fica restrito
+// ao wordmark e a títulos grandes; nada funcional (botão, preço, corpo de
+// texto, label de formulário) usa vermelho sobre magenta.
+//
+// Tipografia: Archivo Black no display (injetada em content/code.json),
+// Archivo no texto corrido (settings.json → font_family).
 // =========================================================================
 
 // -------------------------------------------------------------------------
@@ -19,19 +22,18 @@
 // -------------------------------------------------------------------------
 
 body {
-  background: var(--wmg-bg);
-  color: var(--wmg-ink-soft);
+  background: var(--md-black);
+  color: var(--md-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: var(--wmg-ink);
-  color: #fff;
+  background: var(--md-magenta);
+  color: var(--md-black);
 }
 
-// As vitrines rodam full-bleed com 4rem de respiro; os blocos que usam
-// .container do Bootstrap precisam do mesmo recuo para o grid fechar.
+// Alinha os blocos de .container ao mesmo recuo das vitrines.
 .custom-html > .container,
 .page-title.container {
   max-width: none;
@@ -49,49 +51,71 @@ body {
 }
 
 // -------------------------------------------------------------------------
-// Utilitários tipográficos da marca
+// Utilitários tipográficos
 // -------------------------------------------------------------------------
 
-// Display: o gesto central da identidade.
-%wmg-display-metrics {
+%md-display-metrics {
+  font-family: var(--md-display-font);
+  font-weight: 400; // Archivo Black já é o peso; não empilhar bold
   text-transform: uppercase;
-  font-weight: 400;
-  line-height: var(--wmg-display-leading);
-  letter-spacing: var(--wmg-display-tracking);
+  line-height: var(--md-display-leading);
+  letter-spacing: var(--md-display-tracking);
   margin: 0;
 }
 
-.wmg-display {
-  @extend %wmg-display-metrics;
-  color: var(--wmg-ink);
-  // Nos corpos grandes a referência é visivelmente mais leve que o texto.
-  font-weight: 300;
-  font-size: clamp(2.75rem, 9vw, 7.5rem);
+.md-display {
+  @extend %md-display-metrics;
+  color: var(--md-white);
+  font-size: clamp(2.5rem, 9vw, 8rem);
 }
 
-// Marca d'água: o mesmo desenho do display, em cinza, atrás do conteúdo.
-.wmg-ghost {
-  @extend %wmg-display-metrics;
-  color: var(--wmg-ghost);
-  font-weight: 300;
-  font-size: clamp(3.5rem, 11vw, 9rem);
-  user-select: none;
-  pointer-events: none;
+// O par assinatura da marca — só em tipo grande, nunca em UI funcional.
+.md-display--clash {
+  color: var(--md-red);
 }
 
-// Micro-label: caixa alta, corpo pequeno, tracking aberto.
-.wmg-label {
+// Rótulo pequeno, como a coluna de álbuns da referência.
+.md-label {
   text-transform: uppercase;
   font-size: 0.6875rem;
-  letter-spacing: var(--wmg-label-tracking);
-  font-weight: 400;
-  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: var(--md-label-tracking);
+  line-height: 1.5;
 }
 
-// Tique gráfico "+/" e "/>" que a referência usa colado nos títulos.
-.wmg-slash {
-  color: var(--wmg-accent);
-  letter-spacing: 0;
+// -------------------------------------------------------------------------
+// Painel magenta — o gesto central da identidade
+// -------------------------------------------------------------------------
+
+.md-panel {
+  background: var(--md-magenta);
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+
+  &__wordmark {
+    @extend %md-display-metrics;
+    color: var(--md-red);
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+    display: block;
+  }
+
+  // Empilhado, como na referência — é o que dá corpo ao bloco magenta.
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+
+    a {
+      @extend %md-display-metrics;
+      // Sobre o magenta, o vermelho vira decoração. Os links precisam ser
+      // legíveis, então vão em preto e só ganham o vermelho no hover.
+      color: var(--md-black);
+      font-size: clamp(1.5rem, 4vw, 3rem);
+
+      &:hover {
+        color: var(--md-red);
+      }
+    }
+  }
 }
 
 // -------------------------------------------------------------------------
@@ -99,309 +123,256 @@ body {
 // -------------------------------------------------------------------------
 
 .top-bar {
-  background: var(--wmg-bg);
-  border-bottom: 1px solid var(--wmg-line);
+  background: var(--md-black);
+  border-bottom: 1px solid var(--md-line);
 
   &__nav {
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
     text-transform: uppercase;
     padding: 0;
+    color: var(--md-muted);
 
     a {
-      color: var(--wmg-ink);
+      color: var(--md-white);
 
       &:hover {
-        color: var(--wmg-accent);
+        color: var(--md-magenta);
       }
     }
   }
 
-  // O template dá `background: var(--primary)` ao countdown quando é link
-  // (seletor `a.top-bar__countdown`) — precisa da mesma especificidade.
+  // O template dá `background: var(--primary)` ao countdown quando é link.
   &__countdown,
   a#{&}__countdown {
-    background: var(--wmg-ink);
-    color: #fff;
+    background: var(--md-magenta);
+    color: var(--md-black);
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
     text-transform: uppercase;
     padding: 0.45rem 1rem;
     text-align: center;
     display: block;
 
     &:hover {
-      color: #fff;
-      opacity: 0.8;
+      background: var(--md-red);
+      color: var(--md-white);
     }
   }
 }
 
 .header {
-  background: var(--wmg-bg);
-  border-bottom: 1px solid var(--wmg-line);
+  background: var(--md-black);
+  border-bottom: 1px solid var(--md-line);
   box-shadow: none;
 
   &__logo {
-    max-height: 46px;
+    max-height: 42px;
     width: auto;
   }
 
-  // Nav principal: micro-label, sublinhado só no hover.
   &__nav {
     text-transform: uppercase;
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
     background: transparent;
 
     a {
-      color: var(--wmg-ink);
-      border-bottom: 1px solid transparent;
+      color: var(--md-white);
 
       &:hover {
-        background: transparent;
-        color: var(--wmg-ink);
-        border-bottom-color: var(--wmg-ink);
+        background: var(--md-magenta);
+        color: var(--md-black);
       }
     }
   }
+
+  #cart-button i,
+  #user-button i {
+    color: var(--md-white);
+  }
 }
 
-// Busca como pílula preta — o elemento de UI mais característico da
-// referência (lá são os campos do "Fale conosco").
 #search-input,
 .search__input {
-  background: var(--wmg-ink);
-  border: none;
-  border-radius: var(--wmg-radius-pill);
-  color: #fff;
-  padding-left: 1.25rem;
+  background: var(--md-panel);
+  border: 1px solid var(--md-line);
+  border-radius: 0;
+  color: var(--md-white);
+  padding-left: 0.9rem;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--md-muted);
     text-transform: uppercase;
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
   }
 
   &:focus {
-    background: var(--wmg-ink);
-    color: #fff;
-    box-shadow: 0 0 0 2px rgba(45, 154, 255, 0.5);
+    background: var(--md-panel);
+    color: var(--md-white);
+    border-color: var(--md-magenta);
+    box-shadow: none;
   }
 }
-
-// -------------------------------------------------------------------------
-// Menu de categorias
-// -------------------------------------------------------------------------
 
 .menu {
   &__nav,
   &__link {
     text-transform: uppercase;
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
   }
 
   a {
-    color: var(--wmg-ink);
+    color: var(--md-white);
 
     &:hover {
-      color: var(--wmg-accent);
+      color: var(--md-magenta);
     }
   }
 }
 
-// -------------------------------------------------------------------------
-// Info bar (frete / parcelamento / troca)
-// -------------------------------------------------------------------------
-
 .info-bar {
-  background: transparent;
-  border-top: 1px solid var(--wmg-line);
-  border-bottom: 1px solid var(--wmg-line);
-  color: var(--wmg-ink);
+  background: var(--md-black);
+  color: var(--md-white);
+  border-top: 1px solid var(--md-line);
+  border-bottom: 1px solid var(--md-line);
   text-transform: uppercase;
   font-size: 0.6875rem;
-  letter-spacing: var(--wmg-label-tracking);
+  font-weight: 700;
+  letter-spacing: var(--md-label-tracking);
 
   i,
   svg {
-    color: var(--wmg-ink);
+    color: var(--md-magenta);
   }
 }
 
 // -------------------------------------------------------------------------
-// Hero (custom-html na home)
+// Hero
 // -------------------------------------------------------------------------
 
-.wmg-hero {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(2.5rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+.md-hero {
+  display: grid;
+  gap: 0; // blocos colados, como na referência
+  padding: 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  }
+
+  &__stage {
+    background: var(--md-panel);
+    border: 1px solid var(--md-line);
+    display: flex;
+    align-items: flex-end;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    min-height: clamp(14rem, 32vw, 26rem);
+  }
+
+  &__title {
+    @extend %md-display-metrics;
+    color: var(--md-white);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+
+    em {
+      font-style: normal;
+      color: var(--md-magenta);
+    }
+  }
+}
+
+// -------------------------------------------------------------------------
+// Coluna de índice + grid (o par da referência)
+// -------------------------------------------------------------------------
+
+.md-index {
+  padding: clamp(2rem, 5vw, 4rem) 0;
 
   &__grid {
-    position: relative;
-    z-index: 1;
     display: grid;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: end;
+    gap: clamp(1.5rem, 4vw, 3rem);
 
     @media (min-width: 768px) {
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
     }
   }
 
-  // Bloco de apoio à esquerda, alinhado à direita como na referência.
-  &__aside {
-    color: var(--wmg-muted);
-
-    @media (min-width: 768px) {
-      text-align: right;
-      padding-bottom: 0.75rem;
-    }
-  }
-
-  &__socials {
+  // A coluna lateral de títulos, em caps pequenas e pesadas.
+  &__list {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-
-    @media (min-width: 768px) {
-      justify-content: flex-end;
-    }
+    flex-direction: column;
+    gap: 0.35rem;
 
     a {
-      width: 2rem;
-      height: 2rem;
-      border: 1px solid var(--wmg-line);
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--wmg-muted);
+      @extend .md-label;
+      color: var(--md-white);
 
       &:hover {
-        border-color: var(--wmg-ink);
-        color: var(--wmg-ink);
+        color: var(--md-magenta);
       }
     }
   }
 
-  // Texto de apoio à esquerda e marca d'água à direita, na mesma faixa —
-  // é o arranjo do bloco "So bre." da referência.
-  &__bottom {
-    display: grid;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: end;
-    margin-top: clamp(1.5rem, 4vw, 3rem);
-
-    @media (min-width: 768px) {
-      grid-template-columns: minmax(0, 1fr) auto;
-    }
-  }
-
-  &__lead {
-    max-width: 42rem;
-    margin: 0 0 0 auto;
-    font-size: 0.875rem;
-    line-height: 1.7;
-
-    @media (min-width: 768px) {
-      text-align: right;
-    }
-  }
-
-  &__ghost {
-    text-align: right;
-    // Encosta a última linha na base do parágrafo.
-    margin-bottom: -0.16em;
-  }
-}
-
-// -------------------------------------------------------------------------
-// Bloco de artistas / selos (custom-html na home)
-// -------------------------------------------------------------------------
-
-.wmg-roster {
-  position: relative;
-  padding: clamp(2rem, 5vw, 4rem) 0;
-
-  &__head {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: clamp(1rem, 3vw, 2rem);
-  }
-
-  &__more {
-    color: var(--wmg-ink);
-    text-transform: uppercase;
-    font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
-    white-space: nowrap;
-
-    &:hover {
-      color: var(--wmg-accent);
-    }
-  }
-
-  // Grid apertado, na proporção quadrada da referência.
-  &__grid {
+  // Ladrilhos quadrados colados, sem gutter — a assinatura do grid.
+  &__tiles {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
 
-    @media (min-width: 768px) {
+    @media (min-width: 640px) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
 
+  // Na referência estes ladrilhos são capas de disco. Sem imagem, um
+  // quadrado escuro vazio lê como conteúdo que não carregou — então o
+  // próprio nome vira a arte, em display grande.
   &__tile {
     position: relative;
     aspect-ratio: 1 / 1;
-    background: var(--wmg-ink);
-    color: #fff;
+    background: var(--md-panel);
+    outline: 1px solid var(--md-line);
+    outline-offset: -1px;
     display: flex;
     align-items: flex-end;
-    padding: clamp(0.75rem, 2vw, 1.5rem);
+    padding: 0.75rem;
+    color: var(--md-white);
     overflow: hidden;
-    transition: background 0.2s ease;
+    transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: var(--wmg-accent);
-      color: #fff;
+      background: var(--md-white);
+      color: var(--md-black);
     }
 
-    // Alterna tiles claros para quebrar o bloco preto sólido.
-    &--light {
-      background: #fff;
-      color: var(--wmg-ink);
-      outline: 1px solid var(--wmg-line);
-      outline-offset: -1px;
+    // Alguns em magenta quebram o bloco preto e dão o ritmo do grid denso.
+    &:nth-child(3n + 2) {
+      background: var(--md-magenta);
+      color: var(--md-black);
 
       &:hover {
-        background: var(--wmg-ink);
-        color: #fff;
+        background: var(--md-white);
       }
     }
   }
 
-  &__name {
-    @extend %wmg-display-metrics;
-    font-size: clamp(1.125rem, 3.2vw, 2rem);
-  }
-
-  &__meta {
-    position: absolute;
-    top: clamp(0.75rem, 2vw, 1.5rem);
-    left: clamp(0.75rem, 2vw, 1.5rem);
-    text-transform: uppercase;
-    font-size: 0.625rem;
-    letter-spacing: var(--wmg-label-tracking);
-    opacity: 0.6;
+  // Palavras longas ("Lançamentos", "Acessórios") estouram a coluna, que a
+  // 5 colunas fica estreita — o corpo cede e a quebra é permitida.
+  &__tile-name {
+    @extend %md-display-metrics;
+    font-size: clamp(0.8125rem, 1.6vw, 1.25rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 }
 
@@ -411,18 +382,11 @@ body {
 
 .products-carousel {
   max-width: none;
+  background: var(--md-black);
 
-  // Remove o filete central do template — aqui o título é display,
-  // alinhado à esquerda, com ponto final colado.
-  //
-  // O EJS deixa quebras de linha em volta do título dentro do <a>. Em
-  // contexto flex os nós só-de-espaço são descartados e a whitespace nas
-  // bordas da linha some, então o ponto (::after do h4) encosta no texto
-  // sem precisar de margem negativa.
   &__title {
     display: flex;
     align-items: baseline;
-    justify-content: flex-start;
     text-align: left;
     padding: 0 0 clamp(1rem, 2.5vw, 1.75rem);
 
@@ -430,45 +394,36 @@ body {
       display: none;
     }
 
-    &::after {
-      @extend %wmg-display-metrics;
-      content: ".";
-      font-weight: 300;
-      font-size: clamp(1.75rem, 5.5vw, 4rem);
-      color: var(--wmg-ink);
-    }
-
     a,
     span {
-      @extend %wmg-display-metrics;
+      @extend %md-display-metrics;
       min-width: 0;
       background: transparent;
       padding: 0;
-      color: var(--wmg-ink);
-      font-weight: 300;
-      font-size: clamp(1.75rem, 5.5vw, 4rem);
+      color: var(--md-white);
+      font-size: clamp(1.75rem, 5vw, 4rem);
     }
 
     a:hover {
-      color: var(--wmg-accent);
+      color: var(--md-magenta);
     }
   }
 
-  // Gutter apertado, como o grid de artistas da referência.
+  // Gutter mínimo: o grid da referência é colado.
   .products-carousel__item {
-    padding: 2px;
+    padding: 1px;
   }
 
   .glide__arrow {
-    border: 1px solid var(--wmg-line);
-    border-radius: 50%;
-    color: var(--wmg-ink);
-    background: var(--wmg-bg);
+    border: 1px solid var(--md-line);
+    border-radius: 0;
+    color: var(--md-white);
+    background: var(--md-black);
 
     &:hover {
-      border-color: var(--wmg-ink);
-      background: var(--wmg-ink);
-      color: #fff;
+      background: var(--md-magenta);
+      color: var(--md-black);
+      border-color: var(--md-magenta);
     }
   }
 }
@@ -479,16 +434,15 @@ body {
 
 .product-card {
   padding: 0;
-  background: transparent;
+  background: var(--md-panel);
   border: none;
+  outline: 1px solid var(--md-line);
+  outline-offset: -1px;
 
-  // Foto full-bleed e quadrada, sem respiro interno.
   &__pictures {
     height: auto;
     aspect-ratio: 1 / 1;
-    background: #fff;
-    outline: 1px solid var(--wmg-line);
-    outline-offset: -1px;
+    background: var(--md-panel);
 
     @media (min-width: 576px) {
       height: auto;
@@ -507,7 +461,6 @@ body {
       height: 100%;
       max-height: none;
       object-fit: cover;
-      transition: transform 0.35s ease;
 
       @media (min-width: 576px) {
         max-height: none;
@@ -519,49 +472,50 @@ body {
   }
 
   @media (hover: hover) {
-    &:hover &__picture img {
-      transform: scale(1.04);
+    &:hover {
+      outline-color: var(--md-magenta);
     }
   }
 
   &__name {
     text-transform: uppercase;
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
-    line-height: 1.6;
-    color: var(--wmg-ink);
-    padding-top: 0.75rem;
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
+    line-height: 1.5;
+    color: var(--md-white);
+    padding: 0.75rem 0.75rem 0;
   }
 
   &__prices {
-    padding-bottom: 0.5rem;
+    padding: 0 0.75rem 0.75rem;
   }
 
   &__offer-stamp {
-    background: var(--wmg-accent);
-    color: #fff;
-    border-radius: var(--wmg-radius-pill);
+    background: var(--md-magenta);
+    color: var(--md-black);
+    border-radius: 0;
     font-size: 0.625rem;
+    font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     opacity: 1;
-    right: 0.5rem;
+    right: 0;
   }
 }
 
-// Preços: valor em preto forte, referência riscada em cinza.
 .price,
 .product-card__price,
 .sale-price {
-  color: var(--wmg-ink);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--md-display-font);
+  color: var(--md-white);
+  letter-spacing: 0;
 }
 
 .price--old,
 .base-price,
 del {
-  color: var(--wmg-muted);
+  color: var(--md-muted);
   font-weight: 400;
 }
 
@@ -570,55 +524,57 @@ del {
 // -------------------------------------------------------------------------
 
 .btn {
-  border-radius: var(--wmg-radius-pill);
+  border-radius: 0;
   text-transform: uppercase;
   font-size: 0.6875rem;
-  letter-spacing: var(--wmg-label-tracking);
-  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+  letter-spacing: var(--md-label-tracking);
+  padding: 0.85rem 1.6rem;
   border-width: 1px;
 }
 
+// Magenta com texto preto: o par legível da paleta. Vermelho sobre magenta
+// fica só na decoração.
 .btn-primary {
-  background: var(--wmg-accent);
-  border-color: var(--wmg-accent);
-  color: #fff;
+  background: var(--md-magenta);
+  border-color: var(--md-magenta);
+  color: var(--md-black);
 
   &:hover,
   &:focus,
   &:active {
-    background: var(--wmg-ink);
-    border-color: var(--wmg-ink);
-    color: #fff;
+    background: var(--md-white);
+    border-color: var(--md-white);
+    color: var(--md-black);
   }
 }
 
 .btn-secondary,
 .btn-dark {
-  background: var(--wmg-ink);
-  border-color: var(--wmg-ink);
-  color: #fff;
+  background: var(--md-white);
+  border-color: var(--md-white);
+  color: var(--md-black);
 
   &:hover,
   &:focus,
   &:active {
-    background: var(--wmg-accent);
-    border-color: var(--wmg-accent);
-    color: #fff;
+    background: var(--md-magenta);
+    border-color: var(--md-magenta);
+    color: var(--md-black);
   }
 }
 
 .btn-outline-primary {
-  border-color: var(--wmg-ink);
-  color: var(--wmg-ink);
+  border-color: var(--md-white);
+  color: var(--md-white);
 
   &:hover {
-    background: var(--wmg-ink);
-    border-color: var(--wmg-ink);
-    color: #fff;
+    background: var(--md-magenta);
+    border-color: var(--md-magenta);
+    color: var(--md-black);
   }
 }
 
-// As setas do carrossel herdam .btn — não devem virar pílula larga.
 .glide__arrow.btn {
   padding: 0;
 }
@@ -629,12 +585,12 @@ del {
 
 .page-title {
   &__head {
-    color: var(--wmg-ink);
+    color: var(--md-white);
 
     h1 {
-      @extend %wmg-display-metrics;
-      font-size: clamp(1.75rem, 5.5vw, 4rem);
-      color: var(--wmg-ink);
+      @extend %md-display-metrics;
+      font-size: clamp(1.75rem, 5vw, 4rem);
+      color: var(--md-white);
     }
   }
 
@@ -642,20 +598,21 @@ del {
     max-width: 44rem;
     font-size: 0.9375rem;
     line-height: 1.7;
-    color: var(--wmg-muted);
+    color: var(--md-muted);
   }
 }
 
 .breadcrumb {
   text-transform: uppercase;
   font-size: 0.625rem;
-  letter-spacing: var(--wmg-label-tracking);
+  font-weight: 700;
+  letter-spacing: var(--md-label-tracking);
 
   a {
-    color: var(--wmg-muted);
+    color: var(--md-muted);
 
     &:hover {
-      color: var(--wmg-ink);
+      color: var(--md-magenta);
     }
   }
 }
@@ -664,69 +621,58 @@ del {
   background: transparent;
 }
 
+// Superfícies escuras que o template pinta de claro por padrão.
+.card-body,
+.login__info,
+.cart__info,
+.checkout__info,
+.account-addresses__card,
+.search__box,
+.search-engine__nav,
+.minicart__aside {
+  background: var(--md-panel);
+  color: var(--md-white);
+}
+
+.close {
+  color: var(--md-white);
+}
+
 // -------------------------------------------------------------------------
 // Rodapé
 // -------------------------------------------------------------------------
 
 .footer {
-  background: var(--wmg-bg);
-  border-top: 1px solid var(--wmg-line);
-  color: var(--wmg-ink-soft);
+  background: var(--md-black);
+  color: var(--md-muted);
+  border-top: 1px solid var(--md-line);
   padding-top: clamp(2rem, 5vw, 4rem);
 
   &__title {
-    color: var(--wmg-ink);
+    color: var(--md-magenta);
     text-transform: uppercase;
     font-size: 0.6875rem;
-    letter-spacing: var(--wmg-label-tracking);
-    font-weight: 400;
+    font-weight: 700;
+    letter-spacing: var(--md-label-tracking);
   }
 
   a {
-    color: var(--wmg-ink-soft);
+    color: var(--md-muted);
     font-size: 0.8125rem;
 
     &:hover {
-      color: var(--wmg-accent);
+      color: var(--md-magenta);
     }
   }
 
   &__payment-methods i {
-    filter: grayscale(100%);
+    filter: grayscale(100%) invert(1);
     opacity: 0.7;
   }
-}
 
-// Selos de confiança vêm coloridos e brigam com a paleta preto/branco.
-.stamps img,
-.footer .stamps img {
-  filter: grayscale(100%);
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-}
-
-// -------------------------------------------------------------------------
-// Neutralização de cores utilitárias
-//
-// A identidade não tem verde nem azul-claro. `success` e `info` viram preto
-// e cinza; `danger`/`warning` seguem vermelhos, que é sinalização de erro.
-// -------------------------------------------------------------------------
-
-.text-success {
-  color: var(--wmg-ink) !important;
-  font-weight: 700;
-}
-
-.alert-info,
-.alert-success {
-  background: #fff;
-  border-color: var(--wmg-line);
-  color: var(--wmg-ink);
-  border-radius: 0;
-
-  i,
-  svg {
-    color: var(--wmg-ink);
+  // O template pinta cada rede social com a cor da marca via style inline.
+  a[aria-label] i {
+    color: var(--md-magenta) !important;
   }
 }
 
@@ -734,6 +680,29 @@ del {
 .footer__credits {
   text-transform: uppercase;
   font-size: 0.625rem;
-  letter-spacing: var(--wmg-label-tracking);
-  color: var(--wmg-muted);
+  font-weight: 700;
+  letter-spacing: var(--md-label-tracking);
+  color: var(--md-muted);
+}
+
+// -------------------------------------------------------------------------
+// Cores utilitárias fora da paleta
+// -------------------------------------------------------------------------
+
+.text-success {
+  color: var(--md-magenta) !important;
+  font-weight: 700;
+}
+
+.alert-info,
+.alert-success {
+  background: var(--md-panel);
+  border: 1px solid var(--md-line);
+  color: var(--md-white);
+  border-radius: 0;
+
+  i,
+  svg {
+    color: var(--md-magenta);
+  }
 }

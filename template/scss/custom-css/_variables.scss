@@ -1,34 +1,37 @@
-// Warner Music Brasil — tokens de marca
-// Extraídos de warnermusic.com.br (fundo quase-branco, tipografia preta
-// gigante, marca d'água cinza atrás dos títulos e azul como único acento).
+// Madonna — tokens de marca
+//
+// Amostrados de madonna.com/pages/music: painel magenta com tipografia
+// vermelha em cima (um contraste que vibra de propósito), sobre página
+// preta e texto branco. O grid de capas roda colado, sem gutter.
 
-$wmg-bg: #fafbfe; // fundo geral
-$wmg-ink: #000000; // display, títulos, pílulas
-$wmg-ink-soft: #212529; // corpo de texto
-$wmg-ghost: #efefef; // marca d'água dos títulos
-$wmg-line: #e7e7e7; // divisores
-$wmg-muted: #6c757d; // texto secundário
-$wmg-accent: #2d9aff; // azul do CTA ("Enviar")
+$md-magenta: #ff3bf1; // painel de navegação
+$md-red: #ff0000; // tipografia sobre o magenta
+$md-black: #000000; // fundo da página
+$md-panel: #111111; // superfícies e cards
+$md-white: #ffffff; // texto
+$md-line: #2a2a2a; // divisores sobre o preto
+$md-muted: #8a8a8a; // texto secundário
 
-// Métrica do display: caixa alta, entrelinha comprimida, tracking negativo.
-$wmg-display-tracking: -0.045em;
-$wmg-display-leading: 0.86;
-// Micro-labels: caixa alta, corpo pequeno, tracking aberto.
-$wmg-label-tracking: 0.14em;
-
-$wmg-radius-pill: 100px;
+// Display pesado em caixa alta, tracking fechado.
+$md-display-tracking: -0.02em;
+$md-display-leading: 0.9;
+// Rótulos da coluna de álbuns: caps pequenas, pesadas, tracking aberto.
+$md-label-tracking: 0.08em;
 
 :root {
-  --wmg-bg: #{$wmg-bg};
-  --wmg-ink: #{$wmg-ink};
-  --wmg-ink-soft: #{$wmg-ink-soft};
-  --wmg-ghost: #{$wmg-ghost};
-  --wmg-line: #{$wmg-line};
-  --wmg-muted: #{$wmg-muted};
-  --wmg-accent: #{$wmg-accent};
+  --md-magenta: #{$md-magenta};
+  --md-red: #{$md-red};
+  --md-black: #{$md-black};
+  --md-panel: #{$md-panel};
+  --md-white: #{$md-white};
+  --md-line: #{$md-line};
+  --md-muted: #{$md-muted};
 
-  --wmg-display-tracking: #{$wmg-display-tracking};
-  --wmg-display-leading: #{$wmg-display-leading};
-  --wmg-label-tracking: #{$wmg-label-tracking};
-  --wmg-radius-pill: #{$wmg-radius-pill};
+  --md-display-tracking: #{$md-display-tracking};
+  --md-display-leading: #{$md-display-leading};
+  --md-label-tracking: #{$md-label-tracking};
+
+  // Archivo Black é injetada em content/code.json; o settings.font_family
+  // carrega a Archivo normal, usada no texto corrido.
+  --md-display-font: 'Archivo Black', 'Archivo', Helvetica, Arial, sans-serif;
 }

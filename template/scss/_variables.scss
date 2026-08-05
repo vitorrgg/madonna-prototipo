@@ -4,34 +4,42 @@
 // $primary / $secondary chegam injetados de content/settings.json
 // (primary_color / secondary_color) pelo storefront-framework.
 
-$white: #fff;
-$black: $wmg-ink;
+$white: $md-white;
+$black: $md-black;
 
-$body-bg: $wmg-bg;
-$body-color: $wmg-ink-soft;
+$body-bg: $md-black;
+$body-color: $md-white;
 
-$border-color: $wmg-line;
-$text-muted: $wmg-muted;
-$light: $wmg-ghost;
+$border-color: $md-line;
+$text-muted: $md-muted;
+$light: $md-panel;
+$dark: $md-black;
 
-// Cantos vivos em tudo que é superfície; o arredondado fica só nas
-// pílulas (botões e busca), como na referência.
+// Tudo em canto vivo: a referência é toda de blocos retangulares colados.
 $border-radius: 0;
 $border-radius-sm: 0;
 $border-radius-lg: 0;
 
-$headings-color: $wmg-ink;
-$headings-font-weight: 400;
+$headings-color: $md-white;
+$headings-font-weight: 700;
 
 $breadcrumb-bg: transparent;
 $breadcrumb-divider: quote("/");
-$breadcrumb-divider-color: $wmg-line;
-$breadcrumb-active-color: $wmg-ink;
+$breadcrumb-divider-color: $md-line;
+$breadcrumb-active-color: $md-white;
 
-$card-bg: $white;
-$list-group-bg: $white;
-$list-group-border-color: $wmg-line;
+// Superfícies escuras — o tema inteiro roda sobre preto.
+$card-bg: $md-panel;
+$list-group-color: $md-white;
+$list-group-bg: $md-panel;
+$list-group-border-color: $md-line;
+$modal-content-bg: $md-panel;
 
-$input-border-color: $wmg-line;
-$input-focus-border-color: $wmg-ink;
-$component-active-bg: $wmg-ink;
+$input-bg: $md-panel;
+$input-color: $md-white;
+$input-border-color: $md-line;
+$input-focus-border-color: $md-magenta;
+$input-placeholder-color: $md-muted;
+
+$custom-select-bg: $md-panel;
+$component-active-bg: $md-magenta;

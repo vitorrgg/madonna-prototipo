@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="232" height="46" viewBox="0 0 232 46" role="img" aria-label="Warner Music Brasil">
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48" role="img" aria-label="Madonna">
   <!--
-    Lockup tipográfico de teste. O símbolo "W" da Warner Music é marca
-    registrada e não é reproduzido aqui — para o material final, substituir
-    este arquivo pelo asset oficial fornecido pela gravadora.
+    Wordmark de comp: nome composto em tipo grotesco pesado, vermelho sobre
+    o painel magenta — o par cromático da referência. Não é o logotipo
+    oficial; substituir pelo asset do mídia kit.
   -->
-  <g fill="#000000" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif">
-    <text x="0" y="24" font-size="25" font-weight="600" letter-spacing="-1.1">WARNER</text>
-    <text x="1.5" y="40" font-size="9.5" font-weight="400" letter-spacing="3.4">MUSIC BRASIL</text>
-  </g>
+  <rect width="240" height="48" fill="#ff3bf1"/>
+  <text x="12" y="36" fill="#ff0000"
+        font-family="'Archivo Black', Archivo, Helvetica, Arial, sans-serif"
+        font-size="32" font-weight="900" letter-spacing="-0.5">MADONNA</text>
 </svg>

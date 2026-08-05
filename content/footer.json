@@ -1,33 +1,26 @@
 {
   "description": {
-    "title": "Warner Music Brasil",
-    "text": "Loja oficial do selo no Brasil. Vinis, CDs, box sets e vestuário dos artistas nacionais e internacionais do catálogo."
+    "title": "Madonna",
+    "text": "Protótipo de loja construído sobre o E-Com Plus Storefront. Não é um site oficial da artista."
   },
   "links_1": {
     "list_pages": true,
-    "title": "Institucional",
+    "title": "Sobre",
     "list": []
   },
   "links_2": {
     "list_categories": true,
-    "title": "Catálogo",
+    "title": "Store",
     "list": []
   },
   "contacts": {
-    "title": "Fale conosco",
-    "phone_wpp": true,
+    "title": "Contato",
+    "phone_wpp": false,
     "socials": true,
     "email": true,
-    "address": true
+    "address": false
   },
-  "stamps": [
-    {
-      "src": "/img/uploads/ssl-safe.png",
-      "alt": "Conexão segura",
-      "width": 150,
-      "height": 62
-    }
-  ],
+  "stamps": [],
   "payment_methods": {
     "pix": true,
     "visa": true,
@@ -37,5 +30,5 @@
     "hipercard": true,
     "boleto": true
   },
-  "credits": "Protótipo de teste — identidade baseada em warnermusic.com.br"
+  "credits": "Protótipo de teste — não é um site oficial da artista"
 }
