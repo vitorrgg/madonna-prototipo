@@ -25,6 +25,51 @@ if (resource || collection) {
   _.state = Object.assign({}, body || content, _.state)
 }
 
+/*
+ * Multi-frente (lado SSR) — espelha `template/js/custom-js/global.js`.
+ * `_.EcomSearch` é o próprio módulo @ecomplus/search-engine, então
+ * `dslMiddlewares` é um singleton do processo: registrar só uma vez.
+ */
+const storeSpec = 'madonna'
+const hasStoreSpec = (specs) => Array.isArray(specs) &&
+  specs.some(({ grid, text }) => grid === 'store' && text === storeSpec)
+
+if (!_.EcomSearch.$storeFilterSet) {
+  _.EcomSearch.$storeFilterSet = true
+  _.EcomSearch.dslMiddlewares.push((dsl) => {
+    const storeFilter = {
+      nested: {
+        path: 'specs',
+        query: {
+          bool: {
+            filter: [{
+              term: { 'specs.grid': 'store' }
+            }, {
+              terms: { 'specs.text': [storeSpec] }
+            }]
+          }
+        }
+      }
+    }
+    const { filter } = (dsl.query && dsl.query.bool) || {}
+    if (filter) {
+      filter.push(storeFilter)
+      return
+    }
+    _.lodash.merge(dsl, {
+      query: {
+        bool: { filter: [storeFilter] }
+      }
+    })
+  })
+}
+
+// `_.items` vem de `ecomSearch.fetch()` no boot (cacheado em .ecom.json),
+// antes do middleware acima existir — filtrar pela especificação aqui.
+_.items = _.items.filter(({ specs }) => hasStoreSpec(specs))
+// `_.categories` vem de GET /categories.json (sem busca) — whitelist manual.
+_.categories = _.categories.filter(({ slug }) => slug === 'madonna')
+
 // preset global list of active widgets
 _.widgets = []
 const widgets = _.cms('widgets')
