@@ -1,0 +1,6 @@
+# Protótipo de teste — não deve ser indexado.
+# Restaurar um robots.txt normal se este projeto virar site real.
+User-agent: *
+Disallow: /
+
+Sitemap: https://madonna-prototipo.netlify.app/sitemap.xml

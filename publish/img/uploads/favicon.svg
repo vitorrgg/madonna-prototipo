@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Madonna">
+  <rect width="64" height="64" fill="#ff3bf1"/>
+  <text x="32" y="47" text-anchor="middle" fill="#ff0000"
+        font-family="'Archivo Black', Archivo, Helvetica, Arial, sans-serif"
+        font-size="46" font-weight="900">M</text>
+</svg>
